@@ -1,0 +1,22 @@
+.addbookpaper{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin:10%;
+    background-color: rgba(52, 52, 218, 0.384);
+};
+.bookinput{
+    grid-template-columns: 100%;
+    background-color: red;
+    
+}
+.addbookbutton{
+    background-color: black;
+    margin: 2em;
+}
+.cancelchangesbutton{
+    background-color: black;
+    margin: 2em;
+}
+InputBase{
+    background-color: red;
+}

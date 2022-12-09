@@ -1,0 +1,28 @@
+.wow {
+    border-radius: 3%;
+    display:grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 60% 40%;
+    grid-gap: 1em;
+    grid-row-gap: auto;
+    grid-auto-rows: 450px;
+    grid-auto-columns: 250px;
+}
+.infoBox{
+    text-size-adjust: inherit;
+}
+.titlebox{
+    display:grid;
+    grid-template-columns: 70% 30%;
+    grid-gap:0em;
+}
+
+.editicon{
+    align-items: top;
+}
+.expand{
+    grid-row:2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-overflow:initial;
+}
