@@ -1,16 +1,20 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { Button, IconButton, Menu, Modal, Paper } from '@mui/material';
 import {useState, useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { DeleteBook } from '../apis/api';
+import DeleteBook from '../apis/DeleteBook';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import './expandedcard.css'
+import DataContext from '../context/DataContext';
 
-const ExpandedCard =({book,handleEditBook,handleExpandClick})=>{
+const ExpandedCard =()=>{
+  const {expanded,handleEditBook, handleExpandClick}=useContext(DataContext)
+  const book=expanded;
     const [expandedBookState,setExpandedBookState]=useState(false)
     useEffect(()=>{setExpandedBookState(!expandedBookState)},[book])
     const handleDeleteBook=(bookid)=>{

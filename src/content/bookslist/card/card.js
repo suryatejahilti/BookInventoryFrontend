@@ -14,26 +14,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {useState, useEffect } from 'react';
+import {useState, useEffect, useContext } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import './card.css';
-import ExpandedCard from './expandedcard/expandedcard';
-/*
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-  */
+import ExpandedCard from '../../../expandedcard/expandedcard';
+import DataContext from '../../../context/DataContext';
 
-const BookCard=({book,handleExpandClick})=> {
-  //handleExpandClick(book)
+
+const BookCard=({book})=> {
+  const { handleExpandClick } = useContext(DataContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const handleProfileMenuOpen = (event) => {
@@ -64,13 +54,6 @@ const renderMenu = (
 );
 
   
-let booked={
-  title:"The Alchemist",
-  author:"paulo coelho",
-  price:"297",
-  quantity:5,
-  desc:"The Alchemist is a classic novel in which a boy named Santiago embarks on a journey seeking treasure in the Egyptian pyramids after having a recurring dream about it and on the way meets mentors, falls in love, and most importantly, learns the true importance of who he is and how to improve himself and focus on what really matters in life."
-};
   return (
     <Card className='wow' sx={{ maxWidth: 400, maxHeight :400, minHeight:200, minWidth:400, margin:3 }} onClick={()=>handleExpandClick([book])}>
       <CardMedia align='left'
@@ -94,18 +77,6 @@ let booked={
 
 
       </div>
-      
-      {/*
-      <div className="expand">
-       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-            {book.desc}
-          </Typography>
-        </CardContent>
-      </Collapse> 
-  </div>*/}
-  
       {renderMenu}
     </Card>
     

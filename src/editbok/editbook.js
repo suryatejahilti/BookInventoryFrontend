@@ -1,11 +1,14 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { Button, Modal, Paper } from '@mui/material';
 import {useState, useEffect } from 'react';
-import {UpdateBook} from '../apis/api'
+import UpdateBook from '../apis/UpdateBooks';
 import './editbook.css'
-const EditBook=({book,handleEditBook})=>{
+import DataContext from '../context/DataContext';
+const EditBook=()=>{
+    const {book,handleEditBook}=useContext(DataContext)
     const [editBookState,setEditBookState]=useState(false);
     useEffect(() => {
         setEditBookState(!editBookState);

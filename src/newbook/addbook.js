@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { Button, Modal, Paper } from '@mui/material';
 import {useState, useEffect } from 'react';
 import './addbook.css'
-const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
+import DataContext from '../context/DataContext';
+const AddBook=()=>{
+  const {addBookState, handleNewBook,handleAddBookState}=useContext(DataContext)
     const [book,setBook]=  useState({
       bookid:'',
       title:'',

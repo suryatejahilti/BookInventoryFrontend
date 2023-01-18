@@ -1,7 +1,10 @@
-import BookCard from "./card"
+import BookCard from "./card/card"
 import Grid from '@mui/material/Grid';
+import DataContext from "../../context/DataContext";
+import { useContext } from "react";
 
-const BooksList =({books,handleExpandClick})=>{
+const BooksList =()=>{
+    const { books } = useContext(DataContext);
     return (
         <div>
         <Grid container rowSpacing={5} columnSpacing={{ xs: 2, sm: 1, md: 0 }}>
@@ -10,7 +13,7 @@ const BooksList =({books,handleExpandClick})=>{
             <Grid key={book.bookid} item>
               <BookCard sx={{
                   height: 140,
-                  width: 100,}} book={book}  handleExpandClick={handleExpandClick}/>
+                  width: 100,}} book={book}/>
             </Grid>
             
             ))}

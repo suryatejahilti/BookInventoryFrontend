@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,6 +19,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import './navbar.css';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { Button } from '@mui/material';
+import DataContext from '../context/DataContext';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,8 +61,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({search,setSearch,handleAddBookState}) {
-  
+export default function PrimarySearchAppBar() {
+  const [res, setRes] = useState("");
+  const {search,setSearch,handleAddBookState}=useContext(DataContext)
+  useEffect(() => {
+    setSearch(res)
+    console.log(search,"search changed")
+  }, [res]);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" >
@@ -80,7 +87,7 @@ export default function PrimarySearchAppBar({search,setSearch,handleAddBookState
             <StyledInputBase
               placeholder="Search…"
               value={search}
-              onChange={(e)=> setSearch(e.target.value)}
+              onChange={(e)=> setRes(e.target.value)}
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
