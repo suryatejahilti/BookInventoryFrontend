@@ -18,7 +18,8 @@ import {useState, useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import './card.css';
-
+import ExpandedCard from './expandedcard/expandedcard';
+/*
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -29,9 +30,10 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
-  
+  */
 
-const BookCard=({book})=> {
+const BookCard=({book,handleExpandClick})=> {
+  //handleExpandClick(book)
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const handleProfileMenuOpen = (event) => {
@@ -61,14 +63,16 @@ const renderMenu = (
   </Menu>
 );
 
-  const [expanded, setExpanded] = useState(false);;
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  
+let booked={
+  title:"The Alchemist",
+  author:"paulo coelho",
+  price:"297",
+  quantity:5,
+  desc:"The Alchemist is a classic novel in which a boy named Santiago embarks on a journey seeking treasure in the Egyptian pyramids after having a recurring dream about it and on the way meets mentors, falls in love, and most importantly, learns the true importance of who he is and how to improve himself and focus on what really matters in life."
+};
   return (
-    <Card className='wow' sx={{ maxWidth: 400, maxHeight :400, minHeight:200, minWidth:400, margin:3 }} onClick={handleExpandClick}>
+    <Card className='wow' sx={{ maxWidth: 400, maxHeight :400, minHeight:200, minWidth:400, margin:3 }} onClick={()=>handleExpandClick([book])}>
       <CardMedia align='left'
         component="img"
         height="194"
@@ -90,6 +94,8 @@ const renderMenu = (
 
 
       </div>
+      
+      {/*
       <div className="expand">
        <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
@@ -98,7 +104,8 @@ const renderMenu = (
           </Typography>
         </CardContent>
       </Collapse> 
-      </div>
+  </div>*/}
+  
       {renderMenu}
     </Card>
     

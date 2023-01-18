@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({search,setSearch}) {
+export default function PrimarySearchAppBar({search,setSearch,handleAddBookState}) {
   
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -86,7 +86,7 @@ export default function PrimarySearchAppBar({search,setSearch}) {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box >
-            <Button   className='addbook'  aria-label="show 4 new mails" variant="contained">
+            <Button   className='addbook'  aria-label="add book" variant="contained" onClick={()=>handleAddBookState()}>
             <AddCircleRoundedIcon sx={{xs:1, md:2}}/>
               Add Book
             </Button>

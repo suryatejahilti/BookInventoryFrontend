@@ -3,26 +3,43 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { Button, Modal, Paper } from '@mui/material';
 import {useState, useEffect } from 'react';
-import './addbook.css'
-const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
-    const [book,setBook]=  useState({
-      bookid:'',
-      title:'',
-      author:'',
-      price:'',
-      quantity:'',
-      description:''
+import {UpdateBook} from '../apis/api'
+import './editbook.css'
+const EditBook=({book,handleEditBook})=>{
+    const [editBookState,setEditBookState]=useState(false);
+    useEffect(() => {
+        setEditBookState(!editBookState);
+      }, [book])
+    if (book==null){
+        book={
+            bookid:'',
+            title:'',
+            author:'',
+            price:'',
+            quantity:'',
+            description:''
+        }
+    }
+    
+    const [newBook,setNewBook]=  useState({
+      bookid:book.bookid,
+      title:book.title,
+      author:book.author,
+      price:book.price,
+      quantity:book.quantity,
+      description:book.description
   });
+  
   const handleCancelChanges=()=>{
       const newbook={
-        bookid:'',
-        title:'',
-        author:'',
-        price:'',
-        quantity:'',
-        description:''
+        bookid:book.bookid,
+      title:book.title,
+      author:book.author,
+      price:book.price,
+      quantity:book.quantity,
+      description:book.description
     }
-    setBook(newbook);
+    setNewBook(newbook);
   }
   const handleTitlechange=(title)=>{
     const newbook={
@@ -33,7 +50,7 @@ const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
       quantity:book.quantity,
       description:book.description
     }
-    setBook(newbook);
+    setNewBook(newbook);
   }
   const handleAuthorchange=(author)=>{
     const newbook={
@@ -44,7 +61,7 @@ const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
       quantity:book.quantity,
       description:book.description
     }
-    setBook(newbook);
+    setNewBook(newbook);
   }
   const handlePricechange=(price)=>{
     const newbook={
@@ -55,7 +72,7 @@ const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
       quantity:book.quantity,
       description:book.description
     }
-    setBook(newbook);
+    setNewBook(newbook);
   }
   const handleQuantitychange=(quantity)=>{
     const newbook={
@@ -66,7 +83,7 @@ const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
       quantity:quantity,
       description:book.description
     }
-    setBook(newbook);
+    setNewBook(newbook);
   }
   const handleDescchange=(description)=>{
     const newbook={
@@ -77,43 +94,53 @@ const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
       quantity:book.quantity,
       description:description
     }
-    setBook(newbook);
+    setNewBook(newbook);
   }
-  const handleAddBookStateNew=(book)=>{
-    handleNewBook(book);
-    handleAddBookState();
+  const handleUpadtedBook=(book)=>{
+        console.log(book)
+        const EditBook = async () => {
+            try {
+              const reponse = await UpdateBook(book)
+            } catch (err) {
+            }
+          }
+      
+          EditBook()
+          handleEditBook(null)
+    }
     
-  }
+  
     return (
-    <Modal open={addBookState} onClose={handleAddBookState} closeAfterTransition>
-      <Paper className='addbookpaper' elevation={3}>
+        
+    <Modal open={editBookState} onClose={()=>handleEditBook(null)}>
+      <Paper className='editbookpaper' elevation={3}>
             <div><img className='bookimage' src='./booksicon.png'/></div>
             <div className='bookinput'>
             <InputBase
               placeholder="Title"
               required
-              value={book.title}
+              value={newBook.title}
               onChange={(e)=> handleTitlechange(e.target.value)}
               inputProps={{ 'aria-label': 'title' }}
             />
             <InputBase
               placeholder="Author"
               required
-              value={book.author}
+              value={newBook.author}
               onChange={(e)=> handleAuthorchange(e.target.value)}
               inputProps={{ 'aria-label': 'author' }}
             />
             <InputBase
               placeholder="Price"
+              value={newBook.price}
               type='number'
-              value={book.price}
               onChange={(e)=> handlePricechange(e.target.value)}
               inputProps={{ 'aria-label': 'author' }}
             />
             <InputBase
               placeholder="Quantity"
+              value={newBook.quantity}
               type='number'
-              value={book.quantity}
               onChange={(e)=> handleQuantitychange(e.target.value)}
               inputProps={{ 'aria-label': 'author' }}
             />
@@ -121,13 +148,13 @@ const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
             className='descriptionBox'
               size='medium'
               placeholder="description"
-              value={book.description}
+              value={newBook.description}
               onChange={(e)=> handleDescchange(e.target.value)}
               inputProps={{ 'aria-label': 'author' }}
             />
             <div className='saveandcancel'>
-            <Button   className='addbookbutton'  aria-label="add book" variant="contained" onClick={()=>handleAddBookStateNew(book)}>
-              Add Book
+            <Button   className='addbookbutton'  aria-label="add book" variant="contained" onClick={()=>handleUpadtedBook(newBook)}>
+              Edit Book
             </Button>
             <Button   className='cancelchangesbutton'  aria-label="add book" variant="contained" onClick={()=>handleCancelChanges()}>
               Cancel Changes
@@ -139,4 +166,4 @@ const AddBook=({addBookState, handleNewBook,handleAddBookState})=>{
     </Modal>
     )
 }
-export default AddBook;
+export default EditBook;

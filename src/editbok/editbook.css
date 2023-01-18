@@ -1,0 +1,18 @@
+.editbookpaper{
+position: absolute;
+height: 60vh;
+width: 100vh;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 400;
+background-color: aliceblue;
+border-radius: 3%;
+border: 2px solid rgba(255, 255, 255, 0.705);
+box-shadow: 24;
+display: grid;
+grid-template-columns: 30% 70%;
+}
+.bookimage{
+    border-radius: 5%;
+}
