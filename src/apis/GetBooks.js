@@ -1,7 +1,8 @@
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { axiosPrivate } from "./axios";
+
 
 const GetBooks=async()=>{
-    const axiosPrivate = useAxiosPrivate();
+
     try {
             const response= await axiosPrivate.get('/books')
             const NewBooksList =response.data

@@ -1,7 +1,7 @@
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { axiosPrivate } from "./axios"
+
 
 const GetGoogleBooks=async(searchid)=>{
-    const axiosPrivate = useAxiosPrivate();
     try {   
             console.log("searching")
             const response= await axiosPrivate.get('/googlebooks/'+searchid)

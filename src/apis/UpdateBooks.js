@@ -1,7 +1,7 @@
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { axiosPrivate } from "./axios";
 
 const UpdateBook=async(editbook)=>{
-    const axiosPrivate = useAxiosPrivate();
+
     try {
         const response=axiosPrivate.put('/books/'+editbook.bookid,editbook)
     }

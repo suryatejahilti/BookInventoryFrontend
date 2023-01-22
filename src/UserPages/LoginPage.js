@@ -4,11 +4,10 @@ import { GlobalStyle } from "./globalStyles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate, useLocation } from "react-router";
-import { useContext } from "react";
-import DataContext from "../context/DataContext";
-import useAuth from "../hooks/useAuth";
-import LoginUser from "../apis/LoginUser";
-import RegisterUser from "../apis/RegisterUser";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuth, setAuth } from "../store/AuthSlice";
+import LoginUser from "../apis/LoginUser"
+import { Link } from "react-router-dom";
 
 const signUpSchema = Yup.object({
   email: Yup.string().email().required("Please enter your email"),
@@ -18,24 +17,18 @@ const signUpSchema = Yup.object({
 });
 
 const LoginPage = () => {
-  const{setAuth,auth}= useContext(DataContext)
-  const [res,setRes]=useState(null)
+  const dispatch =useDispatch();
+  const auth=useSelector(getAuth)
+
   const navigate =useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  //console.log(auth)
+
   const initialValues = {
     email: "hello@gmail.com",
     password: "password"
   };
 
-  useEffect(() => {
-    console.log(auth)
-    setAuth(res)
-    if (auth){
-      navigate('/main');
-    }
-  }, [res]);
 
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
@@ -55,8 +48,8 @@ const LoginPage = () => {
             }
           const Response =  await LoginUser(newUser)
 
-          setRes(Response)
-          //navigate('/main');
+          dispatch(setAuth(Response));
+          navigate('/main');
           } catch (err){} 
         }
           login();
@@ -128,7 +121,7 @@ const LoginPage = () => {
                   </div>
                 </form>
                 <p className="sign-up">
-                  Create an account? <a href="#">Sign Up now</a>
+                  Create an account? <Link to="/register">Sign Up now</Link>
                 </p>
               </div>
               <div className="modal-right">

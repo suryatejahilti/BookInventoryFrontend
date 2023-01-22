@@ -6,8 +6,12 @@ import { Button, Modal, Paper } from '@mui/material';
 import {useState, useEffect } from 'react';
 import './addbook.css'
 import DataContext from '../context/DataContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAddBookState, handleAddBookState, handleNewBook } from '../store/BooksSlice';
+import PostBook from '../apis/PostBook';
 const AddBook=()=>{
-  const {addBookState, handleNewBook,handleAddBookState}=useContext(DataContext)
+  const addBookState =useSelector(getAddBookState)
+  const dispatch =useDispatch();
     const [book,setBook]=  useState({
       bookid:'',
       title:'',
@@ -82,13 +86,13 @@ const AddBook=()=>{
     }
     setBook(newbook);
   }
-  const handleAddBookStateNew=(book)=>{
-    handleNewBook(book);
-    handleAddBookState();
+  const handleAddBookStateNew= async (book)=>{
+    dispatch(handleNewBook(book));
+    dispatch(handleAddBookState());
     
   }
     return (
-    <Modal open={addBookState} onClose={handleAddBookState} closeAfterTransition>
+    <Modal open={addBookState} onClose={()=>dispatch(handleAddBookState())} closeAfterTransition>
       <Paper className='addbookpaper' elevation={3}>
             <div><img className='bookimage' src='./booksicon.png'/></div>
             <div className='bookinput'>

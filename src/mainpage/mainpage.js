@@ -1,14 +1,28 @@
 import React, { useEffect } from 'react'
 import { useContext } from 'react'
+import { useSelector } from 'react-redux'
 import Content from '../content/content'
 import DataContext from '../context/DataContext'
 import EditBook from '../editbok/editbook'
 import ExpandedCard from '../expandedcard/expandedcard'
 import PrimarySearchAppBar from '../navbar/navbar'
 import AddBook from '../newbook/addbook'
+import { getAddBookState, getEditBook, getExpanded } from '../store/BooksSlice'
 
 const Mainpage = () => {
-    const {contentstyle, expanded, editBook, books, handleSetBooks} = useContext(DataContext)
+    const expanded=useSelector(getExpanded)
+    const addBookState=useSelector(getAddBookState)
+    const editBook=null
+    //const editBook =useSelector(getEditBook)
+    let contentstyle={
+    }
+    if (addBookState || expanded || editBook){
+      contentstyle={
+        filter:'blur(10px)',
+        PointerEvent :'none'
+    }
+    }
+
     return (
     <div>
         <PrimarySearchAppBar className='navbar'/>   
@@ -18,6 +32,7 @@ const Mainpage = () => {
             </div> 
             <div className='wowbook' key='wowwbook'>
                 <AddBook/>
+                
             </div>
             <div className='expandedbook' key='expandedddbook'>
                 {expanded && <ExpandedCard />} 

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import DataContext from "../context/DataContext";
-import useAuth from "../hooks/useAuth";
+import { getAuth } from "../store/AuthSlice";
 
 const RequireAuth = ({ allowedRoles }) => {
-    const {auth} = useContext(DataContext);
+    const auth=useSelector(getAuth)
     const location = useLocation();
 
     return (

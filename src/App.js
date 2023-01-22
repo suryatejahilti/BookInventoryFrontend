@@ -15,18 +15,52 @@ import Mainpage from './mainpage/mainpage';
 import Layoutpage from './layoutpage/layoutpage';
 import RequireAuth from './Auth/requireauth';
 import Unauthorized from './UserPages/Unauthorized';
+import { fetchBooks } from './store/BooksSlice';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { axiosPrivate } from './apis/axios';
+
+
 const App=()=> {
-  
+  const dispatch=useDispatch();
   const ROLES ={
     user : "USER",
     admin : "ADMIN"
   }
+
+//   const requestIntercept = axiosPrivate.interceptors.request.use(
+//     config => {
+//         if (!config.headers['Authorization']) {
+//             config.headers['Authorization'] = `Bearer ${JSON.parse(localStorage.getItem('auth')).accessToken}`;
+//         }
+//         return config;
+//     }, (error) => Promise.reject(error)
+// );
+
+// const responseIntercept = axiosPrivate.interceptors.response.use(
+//     response => response,
+//     async (error) => {
+//         const prevRequest = error?.config;
+//         if (error?.response?.status === 403 && !prevRequest?.sent) {
+//             prevRequest.sent = true;
+//             //const newAccessToken = await refresh();
+//             prevRequest.headers['Authorization'] = `Bearer ${localStorage.getItem('auth').accessToken}`;
+//             return axiosPrivate(prevRequest);
+//         }
+//         return Promise.reject(error);
+//     }
+// );
   
+useEffect(() => {
+  dispatch(fetchBooks());
+  //console.log("books fetched")
+
+}, []);
+
 
   return (
     <StyledEngineProvider injectFirst> 
     <Router>
-      <DataProvider>
         <Routes>
           <Route path="/" element={<Layoutpage/>}>
             {/*</Routes><Route  path="/" element={<>}/>*/}
@@ -39,7 +73,6 @@ const App=()=> {
             </Route>
           </Route>
         </Routes>
-      </DataProvider>
     </Router>
     </StyledEngineProvider>
   

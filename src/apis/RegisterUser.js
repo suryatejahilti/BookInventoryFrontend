@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import DataContext from "../context/DataContext";
-import useAuth from "../hooks/useAuth";
+
 import axios from "./axios";
 
 const RegisterUser=async(registrationRequest)=>{

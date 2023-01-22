@@ -20,10 +20,12 @@ import Menu from '@mui/material/Menu';
 import './card.css';
 import ExpandedCard from '../../../expandedcard/expandedcard';
 import DataContext from '../../../context/DataContext';
+import { useDispatch } from 'react-redux';
+import { handleExpandClick } from '../../../store/BooksSlice';
 
 
 const BookCard=({book})=> {
-  const { handleExpandClick } = useContext(DataContext);
+  const dispatch=useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const handleProfileMenuOpen = (event) => {
@@ -55,7 +57,7 @@ const renderMenu = (
 
   
   return (
-    <Card className='wow' sx={{ maxWidth: 400, maxHeight :400, minHeight:200, minWidth:400, margin:3 }} onClick={()=>handleExpandClick([book])}>
+    <Card className='wow' sx={{ maxWidth: 400, maxHeight :400, minHeight:200, minWidth:400, margin:3 }} onClick={()=>dispatch(handleExpandClick(book))}>
       <CardMedia align='left'
         component="img"
         height="194"

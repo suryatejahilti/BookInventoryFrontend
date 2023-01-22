@@ -20,6 +20,9 @@ import './navbar.css';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { Button } from '@mui/material';
 import DataContext from '../context/DataContext';
+import { fetchGoogleBooks, getSearch, setSearch } from '../store/SearchSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks, handleAddBookState } from '../store/BooksSlice';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,12 +65,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [res, setRes] = useState("");
-  const {search,setSearch,handleAddBookState}=useContext(DataContext)
+  const search=useSelector(getSearch);
+  const dispatch =useDispatch();
   useEffect(() => {
-    setSearch(res)
-    console.log(search,"search changed")
-  }, [res]);
+    if (search !=''){
+    dispatch(fetchGoogleBooks(search))
+    }
+    else {
+      dispatch(fetchBooks())
+    }
+
+  }, [search]);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" >
@@ -87,13 +95,13 @@ export default function PrimarySearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               value={search}
-              onChange={(e)=> setRes(e.target.value)}
+              onChange={(e)=> dispatch(setSearch(e.target.value))}
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box >
-            <Button   className='addbook'  aria-label="add book" variant="contained" onClick={()=>handleAddBookState()}>
+            <Button   className='addbook'  aria-label="add book" variant="contained" onClick={()=>dispatch(handleAddBookState())}>
             <AddCircleRoundedIcon sx={{xs:1, md:2}}/>
               Add Book
             </Button>

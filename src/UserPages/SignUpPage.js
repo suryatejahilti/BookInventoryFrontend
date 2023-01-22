@@ -5,9 +5,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import RegisterUser from "../apis/RegisterUser"
 import { useNavigate, useLocation } from "react-router";
-import { useContext } from "react";
-import DataContext from "../context/DataContext";
-import useAuth from "../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuth, setAuth } from "../store/AuthSlice";
+import { Link } from "react-router-dom";
 
 const signUpSchema = Yup.object({
   name: Yup.string().min(2).max(25).required("Please enter your name"),
@@ -19,9 +19,9 @@ const signUpSchema = Yup.object({
 });
 
 const SignUpPage = () => {
-  
-  const{setAuth,auth}= useContext(DataContext)
-  const [res,setRes]=useState(null)
+  const dispatch =useDispatch();
+  const auth=useSelector(getAuth)
+
   const navigate =useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -29,13 +29,11 @@ const SignUpPage = () => {
   const initialValues = {
     name: "abcde",
     email: "hello@gmail.com",
-    password: "asdfgh",
-    confirm_password: "asdfgh",
+    password: "password",
+    confirm_password: "password",
   };
 
-  useEffect(() => {
-    setAuth(res)
-  }, [res]);
+
 
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
@@ -54,10 +52,9 @@ const SignUpPage = () => {
             }
             console.log("register submit action started")
           const Response =  await RegisterUser(newUser)
-          // console.log("register submit action ended",Response)
-          // console.log("res",res);
-          setRes(Response)
-          // console.log("res",res)
+          console.log("user registerd")
+          dispatch(setAuth(Response));
+
           navigate('/main');
           } catch (err){} 
         }
@@ -166,7 +163,7 @@ const SignUpPage = () => {
                   </div>
                 </form>
                 <p className="sign-up">
-                  Already have an account? <a href="#">Sign In now</a>
+                  Already have an account? <Link to="/login">Sign In now</Link>
                 </p>
               </div>
               <div className="modal-right">

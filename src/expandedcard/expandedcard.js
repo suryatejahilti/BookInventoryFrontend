@@ -11,9 +11,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import './expandedcard.css'
 import DataContext from '../context/DataContext';
+import { getExpanded, handleEditBookClick, handleExpandClick } from '../store/BooksSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ExpandedCard =()=>{
-  const {expanded,handleEditBook, handleExpandClick}=useContext(DataContext)
+  const dispatch=useDispatch();
+  const expanded=useSelector(getExpanded)
   const book=expanded;
     const [expandedBookState,setExpandedBookState]=useState(false)
     useEffect(()=>{setExpandedBookState(!expandedBookState)},[book])
@@ -55,12 +58,12 @@ const ExpandedCard =()=>{
           open={isMenuOpen}
           onClose={handleMenuClose}
         >
-          <MenuItem onClick={()=>{handleMenuClose();handleEditBook([book])}}>Edit Book</MenuItem>
-          <MenuItem onClick={()=>handleDeleteBook(book.bookid)}>Delete Book</MenuItem>
+          <MenuItem onClick={()=>{handleMenuClose();dispatch(handleEditBookClick(book))}}>Edit Book</MenuItem>
+          <MenuItem onClick={()=>dispatch(handleDeleteBook(book.bookid))}>Delete Book</MenuItem>
         </Menu>
       );
     return (
-        <Modal open={expandedBookState} onClose={()=>handleExpandClick(null)}>
+        <Modal open={expandedBookState} onClose={()=>dispatch(handleExpandClick(null))}>
           <Paper className='exapandedcard' elevation={3}>
                 <div><img className='bookimage' src='./booksicon.png'/></div>
                 <div className='bookinput'>

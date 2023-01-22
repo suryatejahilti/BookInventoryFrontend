@@ -1,7 +1,7 @@
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { axiosPrivate } from "./axios";
 
 const PostBook=async(book)=>{
-    const axiosPrivate = useAxiosPrivate();
+
     try {
         const response =axiosPrivate.post('/books',book)
     }

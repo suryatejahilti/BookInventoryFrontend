@@ -1,7 +1,8 @@
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { axiosPrivate } from "./axios";
+
 
 const DeleteBook=async(id)=>{
-    const axiosPrivate = useAxiosPrivate();
+
     try {
         const response=axiosPrivate.delete('/books/'+id);
     }
