@@ -1,0 +1,45 @@
+.table {
+    display: flex;
+    minWidth: 650,
+  }
+  .tableContainer {
+      margin: '10px 10px';
+      maxWidth: 950;
+  }
+  .tableHeaderCell {
+      fontWeight: 'bold';
+      backgroundColor: red;
+      color: blue;
+  }
+  .avatar {
+        height: 70px;
+      backgroundColor: grey;
+      color: black;
+  }
+  .name {
+    flex:2;
+      fontWeight: 'bold';
+      color: blue;
+  }
+  .status {
+      fontWeight: 'bold';
+      fontSize: '0.75rem';
+      color: 'white';
+      bakgroundColor: 'grey';
+      borderRadius: 8;
+      display: 'inline-block';
+  }
+
+  .toolBar{
+    color: black;
+    height: 1000px;
+    order:2;
+  }
+  .tableBody{
+    display: flex;
+    order:3;
+  }
+
+  .checkbox{
+    max-width: 2px;
+  }
