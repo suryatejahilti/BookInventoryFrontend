@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { getAuth } from "../store/AuthSlice";
+import { getAuth } from "../store/reducers/AuthSlice";
 
 const RequireAuth = ({ allowedRoles }) => {
     const auth=useSelector(getAuth)

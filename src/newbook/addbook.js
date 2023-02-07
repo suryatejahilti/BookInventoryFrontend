@@ -7,7 +7,7 @@ import {useState, useEffect } from 'react';
 import './addbook.css'
 import DataContext from '../context/DataContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddBookState, handleAddBookState, handleNewBook } from '../store/BooksSlice';
+import { getAddBookState, handleAddBookState, handleNewBook } from '../store/reducers/BooksSlice';
 import PostBook from '../apis/PostBook';
 const AddBook=()=>{
   const addBookState =useSelector(getAddBookState)

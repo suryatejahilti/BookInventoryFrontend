@@ -22,7 +22,9 @@ import { Button } from '@mui/material';
 import DataContext from '../context/DataContext';
 import { fetchGoogleBooks, getSearch, setSearch } from '../store/SearchSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, handleAddBookState } from '../store/BooksSlice';
+import { fetchBooks, handleAddBookState } from '../store/reducers/BooksSlice';
+import { handleLogout } from '../store/reducers/AuthSlice';
+import { useNavigate } from 'react-router';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -76,6 +78,27 @@ export default function PrimarySearchAppBar() {
     }
 
   }, [search]);
+  const [auth, setAuth] = useState(true);
+  const disptach=useDispatch();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const navigation =useNavigate()
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const Logout=()=>{
+    setAnchorEl(null);
+    disptach(handleLogout())
+    navigation("/login")
+    
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" >
@@ -100,14 +123,37 @@ export default function PrimarySearchAppBar() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box >
-            <Button   className='addbook'  aria-label="add book" variant="contained" onClick={()=>dispatch(handleAddBookState())}>
-            <AddCircleRoundedIcon sx={{xs:1, md:2}}/>
-              Add Book
-            </Button>
-            
-            
-          </Box> 
+          {auth && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={Logout}>Log out</MenuItem>
+              </Menu>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import RegisterUser from "../apis/RegisterUser"
 import { useNavigate, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuth, setAuth } from "../store/AuthSlice";
+import { getAuth, setAuth } from "../store/reducers/AuthSlice";
 import { Link } from "react-router-dom";
 
 const signUpSchema = Yup.object({
@@ -154,9 +154,6 @@ const SignUpPage = () => {
                     ) : null}
                   </div>
                   <div className="modal-buttons">
-                    <a href="#" className="">
-                      Want to register using Gmail?
-                    </a>
                     <button className="input-button" type="submit">
                       Registration
                     </button>
@@ -168,7 +165,7 @@ const SignUpPage = () => {
               </div>
               <div className="modal-right">
                 <img
-                  src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80"
+                  src="https://img.freepik.com/free-vector/open-book-with-mystic-bright-light_1284-12772.jpg?w=740&t=st=1675073648~exp=1675074248~hmac=82522748014d2a53bfa905cb75781e88e065ae04e0a2692aa926627056a5bf38"
                   alt=""
                 />
               </div>

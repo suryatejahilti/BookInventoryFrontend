@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import GetGoogleBooks from "../apis/GetGoogleBooks";
-import { setBooks } from "./BooksSlice";
+import { setBooks } from "./reducers/BooksSlice";
+import { setGoogleBooks } from "./reducers/GooglebooksSlice";
 
 const initialState={
 
@@ -26,7 +27,7 @@ export const fetchGoogleBooks=(search)=> async dispatch =>{
     try {
         const response= await GetGoogleBooks(search);
         //console.log(response)
-        dispatch(setBooks(response));
+        dispatch(setGoogleBooks(response));
     }
     catch(e){}
 }

@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { GlobalStyle } from "./globalStyles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate, useLocation, Navigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuth, setAuth } from "../store/AuthSlice";
+import { getAuth, setAuth } from "../store/reducers/AuthSlice";
 import LoginUser from "../apis/LoginUser"
 import { Link } from "react-router-dom";
 
@@ -17,6 +17,7 @@ const signUpSchema = Yup.object({
 });
 
 const LoginPage = () => {
+
   const dispatch =useDispatch();
   const auth=useSelector(getAuth)
 
@@ -112,9 +113,7 @@ const LoginPage = () => {
                     ) : null}
                   </div>
                   <div className="modal-buttons">
-                    <a href="#" className="">
-                      Want to login using Gmail?
-                    </a>
+
                     <button className="input-button" type="submit">
                       Login
                     </button>
@@ -126,7 +125,7 @@ const LoginPage = () => {
               </div>
               <div className="modal-right">
                 <img
-                  src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dfd2ec5a01006fd8c4d7592a381d3776&auto=format&fit=crop&w=1000&q=80"
+                  src="https://img.freepik.com/free-vector/open-book-with-mystic-bright-light_1284-12772.jpg?w=740&t=st=1675073648~exp=1675074248~hmac=82522748014d2a53bfa905cb75781e88e065ae04e0a2692aa926627056a5bf38"
                   alt=""
                 />
               </div>

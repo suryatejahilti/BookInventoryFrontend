@@ -4,6 +4,7 @@ import { axiosPrivate } from "./axios";
 const DeleteBook=async(id)=>{
 
     try {
+      console.log(id)
         const response=axiosPrivate.delete('/books/'+id);
     }
     catch(err){

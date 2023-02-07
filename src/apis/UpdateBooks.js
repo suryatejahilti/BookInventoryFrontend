@@ -3,7 +3,8 @@ import { axiosPrivate } from "./axios";
 const UpdateBook=async(editbook)=>{
 
     try {
-        const response=axiosPrivate.put('/books/'+editbook.bookid,editbook)
+      console.log(editbook.bookId)
+        const response=axiosPrivate.put('/books/'+editbook.bookId,editbook)
     }
     catch(err){
         if (err.response) {
