@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import BookReducer from "./reducers/BooksSlice"
 import AuthReducer from "./reducers/AuthSlice"
-import SearchReducer from "./SearchSlice"
-import GoogleBooksReducer from "./GooglebooksSlice"
+import SearchReducer from "./reducers/SearchSlice"
+import GoogleBooksReducer from "./reducers/GooglebooksSlice"
 
 const reducer = combineReducers({
     BookReducer:BookReducer,

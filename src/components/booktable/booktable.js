@@ -16,21 +16,14 @@ import {
     StylesProvider
  } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, getAllBooks, handleDeleteBook, handleEditBookClick } from '../store/reducers/BooksSlice';
+import { fetchBooks, getAllBooks, handleDeleteBook, handleEditBookClick } from '../../store/reducers/BooksSlice';
 import { selectedGridRowsCountSelector } from '@mui/x-data-grid';
 import { red } from '@mui/material/colors';
 import './booktable.css'
 import { Box, Checkbox, checkboxClasses } from '@mui/material';
-import TableToolbar from './tabletoolbar';
-import TableHeader from './tablehead';
+
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-import { styled } from '@mui/material/styles';
-import { maxWidth } from '@mui/system';
-import CrudNavBar from '../navbar/crudNavBar';
-import { Button } from 'react-admin';
-import DeleteBook from '../apis/DeleteBook';
 import { useNavigate } from 'react-router';
 
 
@@ -83,10 +76,10 @@ const BookTable=()=> {
 
   const handleSelectAllClick = (e) => {
     if (e.target.checked){
-      console.log(e)
+      //console.log(e)
       const newSelected = books.map((n) => n.bookId);
       setSelected(newSelected);
-      console.log(selected.length,books.length)
+      //console.log(selected.length,books.length)
     }
     else {
     setSelected([]);
@@ -115,8 +108,8 @@ const BookTable=()=> {
 
   }
   const handleRowClick=(bookId)=>{
-    console.log(bookId)
-    console.log(selected)
+    //console.log(bookId)
+    //console.log(selected)
     const selectedIndex = selected.indexOf(bookId);
     let newSelected= [];
 
@@ -221,7 +214,8 @@ const BookTable=()=> {
             </TableRow>
           ))}
         </TableBody>
-        {/* <TablePagination
+        {/*
+        <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={books.length}
@@ -229,8 +223,9 @@ const BookTable=()=> {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-        /> */}
+        />*/}
       </Table>
+       
     </Box>
     </StylesProvider>
 

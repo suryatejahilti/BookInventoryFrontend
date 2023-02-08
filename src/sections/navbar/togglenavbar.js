@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import styled from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from "react-redux";
-import { getSearch, setSearch } from "../store/SearchSlice";
+import { getSearch, setSearch } from "../../store/reducers/SearchSlice";
 
 
 const  ToggleNavbar = ({handleBookState, handleGoogleBooksState,handleAddBookState}) => {

@@ -4,14 +4,8 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { Button, IconButton, Menu, Modal, Paper } from '@mui/material';
 import {useState, useEffect } from 'react';
-import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import DeleteBook from '../apis/DeleteBook';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import './expandedcard.css'
-import DataContext from '../context/DataContext';
-import { getExpanded, handleEditBookClick, handleExpandClick, handleNewBook } from '../store/reducers/BooksSlice';
+import { getExpanded, handleEditBookClick, handleExpandClick, handleNewBook } from '../../store/reducers/BooksSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 

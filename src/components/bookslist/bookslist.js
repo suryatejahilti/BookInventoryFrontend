@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { getAllBooks } from "../../store/reducers/BooksSlice";
 import { getGoogleBooks } from "../../store/reducers/GooglebooksSlice";
 import { useState } from "react";
-import BookCard from './card/card';
+import BookCard from '../card/card';
 
 const BooksList =()=>{
     const books=useSelector(getGoogleBooks);

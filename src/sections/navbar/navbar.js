@@ -19,11 +19,10 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import './navbar.css';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { Button } from '@mui/material';
-import DataContext from '../context/DataContext';
-import { fetchGoogleBooks, getSearch, setSearch } from '../store/SearchSlice';
+import { fetchGoogleBooks, getSearch, setSearch } from '../../store/reducers/SearchSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, handleAddBookState } from '../store/reducers/BooksSlice';
-import { handleLogout } from '../store/reducers/AuthSlice';
+import { fetchBooks, handleAddBookState } from '../../store/reducers/BooksSlice';
+import { handleLogout } from '../../store/reducers/AuthSlice';
 import { useNavigate } from 'react-router';
 
 const Search = styled('div')(({ theme }) => ({

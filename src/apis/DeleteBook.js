@@ -2,10 +2,10 @@ import { axiosPrivate } from "./axios";
 
 
 const DeleteBook=async(id)=>{
-
+  const auth=JSON.parse(localStorage.getItem("auth"));
     try {
       console.log(id)
-        const response=axiosPrivate.delete('/books/'+id);
+        const response=axiosPrivate.delete('/books/'+id+"/"+auth.user);
     }
     catch(err){
         if (err.response) {

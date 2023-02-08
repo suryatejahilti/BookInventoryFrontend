@@ -34,7 +34,7 @@ const BooksSlice = createSlice({
         handleEditBookClick:(state,action)=>{
             state.expanded=null;
             state.editBook=action.payload
-            console.log(state.editBook)
+            //console.log(state.editBook)
         }
         
 
@@ -81,7 +81,7 @@ export const handleEditBook=(Book)=> async dispatch =>{
     dispatch(startLoading());
     try {
         const response= await UpdateBook(Book);
-        //console.log(response)
+        console.log(response)
         dispatch(fetchBooks());
     }
     catch(e){}

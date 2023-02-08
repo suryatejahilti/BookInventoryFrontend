@@ -1,10 +1,16 @@
+import { useSelector } from "react-redux";
+import { getAuth } from "../store/reducers/AuthSlice";
 import { axiosPrivate } from "./axios";
 
 const UpdateBook=async(editbook)=>{
+  const auth=JSON.parse(localStorage.getItem("auth"));
+  const bookRequest={
+    book:editbook,
+    user:auth.user
+  }
 
     try {
-      console.log(editbook.bookId)
-        const response=axiosPrivate.put('/books/'+editbook.bookId,editbook)
+        const response=axiosPrivate.put('/books',bookRequest)
     }
     catch(err){
         if (err.response) {

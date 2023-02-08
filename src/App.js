@@ -1,26 +1,19 @@
 import './App.css';
 import { StyledEngineProvider } from '@mui/material/styles';
-import  PrimarySearchAppBar from'./navbar/navbar';
+
 import {useState, useEffect } from 'react';
-import Content from "./content/content"
-import AddBook from "./newbook/addbook"
+
 import './App.css'
-import ExpandedCard from './expandedcard/expandedcard';
-import EditBook from './editbok/editbook';
+
 import LoginPage from './UserPages/LoginPage';
 import SignUpPage from './UserPages/SignUpPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { DataProvider } from './context/DataContext';
-import Mainpage from './mainpage/mainpage';
-import Layoutpage from './layoutpage/layoutpage';
+import Mainpage from './UserPages/MainPage';
 import RequireAuth from './Auth/requireauth';
 import Unauthorized from './UserPages/Unauthorized';
 import { fetchBooks } from './store/reducers/BooksSlice';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { axiosPrivate } from './apis/axios';
-import { fetchGoogleBooks } from './store/reducers/GooglebooksSlice';
-
+import SimpleLayout from './layout/simple/SimpleLayout';
 
 const App=()=> {
   const dispatch=useDispatch();
@@ -40,7 +33,7 @@ useEffect(() => {
     <StyledEngineProvider injectFirst> 
     <Router>
         <Routes>
-          <Route path="/" element={<Layoutpage/>}>
+          <Route path="/" element={<SimpleLayout/>}>
             {/*</Routes><Route  path="/" element={<>}/>*/}
             <Route  path="/register" element={<SignUpPage/>}/>
             <Route  path="/login" element={<LoginPage/>}/>

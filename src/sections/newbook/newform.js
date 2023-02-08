@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { handleNewBook } from "../store/reducers/BooksSlice";
+import { handleNewBook } from "../../store/reducers/BooksSlice";
 const AddNewBook = () =>{
     const[title,setTitle]=useState('');
     const[author , setAuthor]=useState('');

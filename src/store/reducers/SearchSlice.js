@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import GetGoogleBooks from "../apis/GetGoogleBooks";
-import { setBooks } from "./reducers/BooksSlice";
-import { setGoogleBooks } from "./reducers/GooglebooksSlice";
+import GetGoogleBooks from "../../apis/GetGoogleBooks";
+//import { setBooks } from "./BooksSlice";
+import { setGoogleBooks } from "./GooglebooksSlice";
 
 const initialState={
 

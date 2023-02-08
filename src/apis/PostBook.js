@@ -1,9 +1,13 @@
 import { axiosPrivate } from "./axios";
 
 const PostBook=async(book)=>{
-
+  const auth=JSON.parse(localStorage.getItem("auth"));
+  const bookRequest={
+    book:book,
+    user:auth.user
+  }
     try {
-        const response =axiosPrivate.post('/books',book)
+        const response =axiosPrivate.post('/books',bookRequest)
     }
     catch(err){
         if (err.response) {
