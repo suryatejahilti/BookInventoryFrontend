@@ -32,7 +32,7 @@ const ooo=false;
 const auth=useSelector(getAuth);
 useEffect(() => {
   if (localStorage.getItem("auth")!==null){
-  dispatch(setAuth(JSON.parse(localStorage.getItem("auth"))));
+  //dispatch(setAuth(JSON.parse(localStorage.getItem("auth"))));
   }
 
 }, []);
@@ -43,7 +43,7 @@ useEffect(() => {
     <StyledEngineProvider injectFirst> 
     <Router>
         <Routes>
-          <Route path="/" element={<LoginPage/>}>
+          <Route path="/" element={<SimpleLayout/>}>
             {/*</Routes><Route  path="/" element={<>}/>*/}
             <Route  path="/register" element={<SignUpPage/>}/>
             <Route  path="/login" element={<LoginPage/>}/>

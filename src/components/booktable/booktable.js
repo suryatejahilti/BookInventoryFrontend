@@ -74,7 +74,8 @@ const BookTable=()=> {
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const search=useSelector(getSearch)
-  const books=useSelector(getAllBooks).filter(x => x.title.toLowerCase().includes(search.toLowerCase()))
+  let books=useSelector(getAllBooks)
+  if (!books){  books=books.filter(x => x.title.toLowerCase().includes(search.toLowerCase())) }
   
   const navigate=useNavigate();
   const auth =useSelector(getAuth)

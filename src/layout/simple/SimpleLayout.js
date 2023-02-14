@@ -23,7 +23,7 @@ const StyledHeader = styled('header')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function SimpleLayout() {
-  const auth=localStorage.getItem("auth")
+  const auth=localStorage.getItem
   const location =useLocation();
   return (
     <>
