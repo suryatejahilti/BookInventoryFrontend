@@ -62,7 +62,7 @@ const Mainpage = () => {
                {googleBooksState && <Content /> }
             </div>
             <div className='content' >
-               {addBookState && <NewForm /> }
+               {addBookState && <NewForm handleBookState={handleBookState}/> }
             </div>
             {/* <div className='wowbook' key='wowwbook'>
                 <AddBook/>

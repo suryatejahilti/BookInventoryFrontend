@@ -47,7 +47,7 @@ const renderMenu = (
 
   
   return (
-    <Card className='wow' sx={{ maxWidth: 400, maxHeight :400, minHeight:200, minWidth:400, margin:3 }} onClick={()=>dispatch(handleExpandClick(book))}>
+    <Card data-testid="bookCard" className='wow' sx={{ maxWidth: 400, maxHeight :400, minHeight:200, minWidth:400, margin:3 }} onClick={()=>dispatch(handleExpandClick(book))}>
       {/* <CardMedia align='left'
         component="img"
         height="194"

@@ -40,6 +40,7 @@ const AddNewBook = () =>{
             setCopies(0);
             setDisplayWarning(false);
             setDisplaySuccess(true);
+            //handleNewBook();
         }
         else{
             setDisplayWarning(true);

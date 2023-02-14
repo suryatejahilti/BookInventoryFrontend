@@ -25,6 +25,8 @@ import { Box, Checkbox, checkboxClasses } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router';
+import { getAuth } from '../../store/reducers/AuthSlice';
+import { getSearch } from '../../store/reducers/SearchSlice';
 
 
 
@@ -71,8 +73,11 @@ const BookTable=()=> {
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const books=useSelector(getAllBooks)
+  const search=useSelector(getSearch)
+  const books=useSelector(getAllBooks).filter(x => x.title.toLowerCase().includes(search.toLowerCase()))
+  
   const navigate=useNavigate();
+  const auth =useSelector(getAuth)
 
   const handleSelectAllClick = (e) => {
     if (e.target.checked){
@@ -143,6 +148,15 @@ const BookTable=()=> {
     
 
   }
+  let styler ={
+    color:"black"
+  }
+  if (auth.roles=='USER'){
+    styler ={
+      display :"none"
+    }
+  }
+  
   const dispatch =useDispatch();
   const classes=useStyles();
   return (
@@ -150,7 +164,7 @@ const BookTable=()=> {
     <Box className={classes.root}>
       <Table  aria-label="simple table" >
         <TableHead >
-        <TableRow data-testid="tableheader">
+        <TableRow data-testid="tableHeader">
             <TableCell className={classes.checkbox}><Checkbox
               color="primary"
               indeterminate={selected.length<books.length && selected.length>0}
@@ -165,7 +179,7 @@ const BookTable=()=> {
             <TableCell className="tableHeaderCell">Price</TableCell>
             <TableCell className="tableHeaderCell">Copies</TableCell>
             <TableCell className="tableHeaderCell">
-              <DeleteIcon sx={{color:"black"}} onClick={()=>{handleDeleteClick()}}/>
+              <DeleteIcon sx={styler} onClick={()=>{handleDeleteClick()}}/>
               </TableCell>
           </TableRow>
 
@@ -200,7 +214,7 @@ const BookTable=()=> {
                 </TableCell>
               <TableCell className={classes.info}>{row.quantity}</TableCell>
               <TableCell className={classes.info}>
-                <EditIcon onClick={()=>{dispatch(handleEditBookClick(row))}}/>
+                <EditIcon style={styler} onClick={()=>{dispatch(handleEditBookClick(row))}}/>
                   {/* <Typography 
                     className="status"
                     style={{
@@ -213,8 +227,8 @@ const BookTable=()=> {
                 </TableCell>
             </TableRow>
           ))}
-        </TableBody>
-        {/*
+          <TableRow>
+            <TableCell></TableCell>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
@@ -223,65 +237,17 @@ const BookTable=()=> {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-        />*/}
+        />
+        <TableCell></TableCell>
+        <TableCell></TableCell>
+        <TableCell></TableCell>
+        </TableRow>
+        </TableBody>
+        
       </Table>
        
     </Box>
     </StylesProvider>
-
-
-
-
-
-
-
-
-    // <TableContainer >
-    //   <Table sx={{ minWidth: 700 }} aria-label="customized table">
-    //     <TableHead>
-    //       <TableRow>
-    //       <TableCell  style={{ width: 50 }}><Checkbox
-    //           color="primary"
-    //           indeterminate={numSelected > 0 && numSelected < rowCount}
-    //           checked={rowCount > 0 && numSelected === rowCount}
-              
-    //           inputProps={{
-    //             'aria-label': 'select all desserts',
-    //           }}
-    //         /></TableCell>
-    //         <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-    //         <StyledTableCell align="right">Calories</StyledTableCell>
-    //         <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-    //         <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-    //         <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-    //       </TableRow>
-    //     </TableHead>
-    //     <TableBody>
-    //       {books.map((row) => (
-    //         <StyledTableRow key={row.name}>
-    //           <TableCell style={{ width: 50 }}>
-    //            <Checkbox
-    //                       color="primary"
-    //                       checked={isItemSelected}
-    //                       inputProps={{
-    //                         'aria-labelledby': books.bookId,
-    //                       }}
-    //                     />
-    //           </TableCell>
-    //           <StyledTableCell component="th" scope="row">
-    //             {row.title}
-    //           </StyledTableCell>
-    //           <StyledTableCell align="right">{row.bookId}</StyledTableCell>
-    //           <StyledTableCell align="right">{row.price}</StyledTableCell>
-    //           <StyledTableCell align="right">{row.author}</StyledTableCell>
-    //           <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-    //         </StyledTableRow>
-    //       ))}
-    //     </TableBody>
-
-
-    //   </Table>
-    // </TableContainer>
   );
 }
 

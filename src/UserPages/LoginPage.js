@@ -100,6 +100,7 @@ const LoginPage = () => {
                       Password
                     </label>
                     <input
+                    data-testid="logintest"
                       type="password"
                       autoComplete="off"
                       name="password"

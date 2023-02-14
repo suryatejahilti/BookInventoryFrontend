@@ -22,7 +22,7 @@ import { Button } from '@mui/material';
 import { fetchGoogleBooks, getSearch, setSearch } from '../../store/reducers/SearchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, handleAddBookState } from '../../store/reducers/BooksSlice';
-import { handleLogout } from '../../store/reducers/AuthSlice';
+import { getAuth, handleLogout } from '../../store/reducers/AuthSlice';
 import { useNavigate } from 'react-router';
 
 const Search = styled('div')(({ theme }) => ({
@@ -68,6 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar() {
   const search=useSelector(getSearch);
   const dispatch =useDispatch();
+  const autho=useSelector(getAuth)
   useEffect(() => {
     if (search !=''){
     dispatch(fetchGoogleBooks(search))
@@ -149,6 +150,7 @@ export default function PrimarySearchAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
+                <MenuItem >{autho.user}</MenuItem>
                 <MenuItem onClick={Logout}>Log out</MenuItem>
               </Menu>
             </div>

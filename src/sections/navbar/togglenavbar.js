@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from "react-redux";
 import { getSearch, setSearch } from "../../store/reducers/SearchSlice";
+import { getAuth } from "../../store/reducers/AuthSlice";
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -50,6 +51,14 @@ const  ToggleNavbar = ({handleBookState, handleGoogleBooksState,handleAddBookSta
 
       //const search=useSelector(getSearch);
       const dispatch =useDispatch();
+      const auth =useSelector(getAuth)
+      let styler ={
+      }
+      if (auth.roles=='USER'){
+        styler ={
+          display :"none"
+        }
+      }
 
     return(
 
@@ -88,7 +97,7 @@ const  ToggleNavbar = ({handleBookState, handleGoogleBooksState,handleAddBookSta
 
             </li>
 
-            <li className='nav-item'>
+            <li style={styler} className='nav-item'>
             <div className='nav-link' onClick={handleAddBookState}>AddBook</div>
 
             </li>
