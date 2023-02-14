@@ -54,5 +54,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "ts-jest": "^29.0.5"
+  },  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest",
+    "transformIgnorePatterns": ["node_modules\/(?!axios)"]
   }
 }

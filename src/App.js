@@ -7,13 +7,14 @@ import './App.css'
 
 import LoginPage from './UserPages/LoginPage';
 import SignUpPage from './UserPages/SignUpPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, redirect, Navigate, useNavigate } from 'react-router-dom'
 import Mainpage from './UserPages/MainPage';
 import RequireAuth from './Auth/requireauth';
 import Unauthorized from './UserPages/Unauthorized';
 import { fetchBooks } from './store/reducers/BooksSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SimpleLayout from './layout/simple/SimpleLayout';
+import { getAuth, setAuth } from './store/reducers/AuthSlice';
 
 const App=()=> {
   const dispatch=useDispatch();
@@ -27,6 +28,15 @@ useEffect(() => {
   //console.log("books fetched")
 
 }, []);
+const ooo=false;
+const auth=useSelector(getAuth);
+useEffect(() => {
+  if (localStorage.getItem("auth")!==null){
+  dispatch(setAuth(JSON.parse(localStorage.getItem("auth"))));
+  }
+
+}, []);
+
 
 
   return (

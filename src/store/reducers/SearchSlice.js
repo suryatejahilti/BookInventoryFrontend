@@ -31,6 +31,14 @@ export const fetchGoogleBooks=(search)=> async dispatch =>{
     }
     catch(e){}
 }
+export const filterBooks=(search)=> async dispatch =>{
+    try {
+        const response= await GetGoogleBooks(search);
+        //console.log(response)
+        dispatch(setGoogleBooks(response));
+    }
+    catch(e){}
+}
 export const getSearch = (state) => state.search.search;
 export const { setSearch } = SearchSlice.actions
 export default SearchSlice.reducer
