@@ -43,7 +43,7 @@ useEffect(() => {
     <StyledEngineProvider injectFirst> 
     <Router>
         <Routes>
-          <Route path="/" element={<SimpleLayout/>}>
+          <Route path="/" element={<LoginPage/>}>
             {/*</Routes><Route  path="/" element={<>}/>*/}
             <Route  path="/register" element={<SignUpPage/>}/>
             <Route  path="/login" element={<LoginPage/>}/>
