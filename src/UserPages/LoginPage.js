@@ -20,8 +20,14 @@ const LoginPage = () => {
 
   const dispatch =useDispatch();
   const auth=useSelector(getAuth)
+  const autho=localStorage.getItem("auth")
 
   const navigate =useNavigate();
+  useEffect(() => {
+    if (autho){
+      navigate("/main")
+    }
+  }, []);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 

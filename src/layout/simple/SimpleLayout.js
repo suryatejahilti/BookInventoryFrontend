@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
@@ -23,18 +23,20 @@ const StyledHeader = styled('header')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function SimpleLayout() {
-  const auth=localStorage.getItem
+  const auth=localStorage.getItem("auth")
   const location =useLocation();
+  const navigate=useNavigate();
+  if (auth){
+    //navigate('/main')
+  }
+  else {}
   return (
     <>
     {/* {auth ? <Navigate to="/main"  />:
     <Navigate to="/login"  />
       } */}
 
-      <StyledHeader>
-        {//<Logo />
-}
-      </StyledHeader>
+
 
 <Outlet />
     </>

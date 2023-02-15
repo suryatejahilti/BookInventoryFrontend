@@ -96,7 +96,7 @@ export default function PrimarySearchAppBar() {
   const Logout=()=>{
     setAnchorEl(null);
     disptach(handleLogout())
-    navigation("/login")
+    navigation("/")
     
   }
   return (

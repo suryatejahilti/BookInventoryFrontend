@@ -101,19 +101,6 @@ const  ToggleNavbar = ({handleBookState, handleGoogleBooksState,handleAddBookSta
             <div className='nav-link' onClick={handleAddBookState}>AddBook</div>
 
             </li>
-            {/* <li>
-            <Search className='searchbar'>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              value={search}
-              onChange={(e)=> dispatch(setSearch(e.target.value))}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-            </li> */}
 
           </ul>
 

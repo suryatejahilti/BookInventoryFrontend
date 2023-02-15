@@ -23,6 +23,13 @@ const SignUpPage = () => {
   const auth=useSelector(getAuth)
 
   const navigate =useNavigate();
+  const autho=localStorage.getItem("auth")
+
+  useEffect(() => {
+    if (autho){
+      navigate("/main")
+    }
+  }, []);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
