@@ -181,9 +181,9 @@ const BookTable=()=> {
             <TableCell className="tableHeaderCell">Book Info</TableCell>
             <TableCell className="tableHeaderCell">Price</TableCell>
             <TableCell className="tableHeaderCell">Copies</TableCell>
-            <TableCell className="tableHeaderCell">
-              <DeleteIcon sx={styler} onClick={()=>{handleDeleteClick()}}/>
-              </TableCell>
+            {auth.roles==="ADMIN" && <TableCell className="tableHeaderCell">
+              <DeleteIcon sx={{"color":"black"}} onClick={()=>{handleDeleteClick()}}/>
+              </TableCell>}
           </TableRow>
 
         </TableHead>
@@ -216,8 +216,8 @@ const BookTable=()=> {
                   <Typography color="primary" variant="subtitle2">{row.price}</Typography>
                 </TableCell>
               <TableCell className={classes.info}>{row.quantity}</TableCell>
-              <TableCell className={classes.info}>
-                <EditIcon style={styler} onClick={()=>{dispatch(handleEditBookClick(row))}}/>
+              {auth.roles==="ADMIN" &&<TableCell className={classes.info}>
+                <EditIcon  onClick={()=>{dispatch(handleEditBookClick(row))}}/>
                   {/* <Typography 
                     className="status"
                     style={{
@@ -227,7 +227,7 @@ const BookTable=()=> {
                         (row.quantity<0 === 'Blocked' && 'orange'))
                     }}
                   >available</Typography> */}
-                </TableCell>
+                </TableCell>}
             </TableRow>
           ))}
           <TableRow>
