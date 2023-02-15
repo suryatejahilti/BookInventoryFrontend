@@ -154,6 +154,8 @@ const BookTable=()=> {
   }
   if (auth.roles=='USER'){
     styler ={
+      visible:"hidden",
+      color:"black",
       display :"none"
     }
   }

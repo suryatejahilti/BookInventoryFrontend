@@ -45,7 +45,7 @@ useEffect(() => {
         <Routes>
             {/*</Routes><Route  path="/" element={<>}/>*/}
             <Route  path="/register" element={<SignUpPage/>}/>
-            <Route  path="/" element={<LoginPage/>}/>
+            <Route  exact path="/" element={<LoginPage/>}/>
             <Route path="/unauthorized" element={<Unauthorized/>}/>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.user,ROLES.admin]}/>}>
