@@ -1,5 +1,5 @@
-const axios = require('axios');
-const BASE_URL = 'http://localhost:8080';
+import axios from "axios";
+const BASE_URL = 'https://bookinventorybackend-production-3256.up.railway.app';
 
 export default axios.create({
     baseURL: BASE_URL
